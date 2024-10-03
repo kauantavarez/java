@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação de Formulário</title>
+    <style>
+        /* CSS aqui */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4; /* Cor de fundo clara */
+        }
+
+        h1 {
+            text-align: center;
+            color: #333; /* Cor do título */
+        }
+
+        form {
+            background: #fff; /* Fundo branco para o formulário */
+            padding: 20px;
+            border-radius: 5px; /* Bordas arredondadas */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            max-width: 400px; /* Largura máxima do formulário */
+            margin: auto; /* Centraliza o formulário */
+        }
+
+        label {
+            display: block; /* Faz os rótulos ocuparem toda a largura */
+            margin-bottom: 5px; /* Espaçamento abaixo dos rótulos */
+            color: #555; /* Cor dos rótulos */
+        }
+
+        input[type="number"] {
+            width: 100%; /* Largura total dos campos de entrada */
+            padding: 10px; /* Espaçamento interno */
+            margin-bottom: 15px; /* Espaçamento abaixo dos campos de entrada */
+            border: 1px solid #ccc; /* Borda padrão */
+            border-radius: 3px; /* Bordas arredondadas */
+            box-sizing: border-box; /* Inclui padding e borda na largura total */
+        }
+
+        button {
+            width: 100%; /* Largura total do botão */
+            padding: 10px; /* Espaçamento interno */
+            background-color: #28a745; /* Cor de fundo do botão */
+            color: white; /* Cor do texto */
+            border: none; /* Remove a borda padrão */
+            border-radius: 3px; /* Bordas arredondadas */
+            cursor: pointer; /* Cursor de mão ao passar sobre o botão */
+            font-size: 16px; /* Tamanho da fonte */
+        }
+
+        button:hover {
+            background-color: #218838; /* Cor de fundo ao passar o mouse */
+        }
+
+        .mensagem {
+            margin-top: 20px;
+            text-align: center; /* Centraliza a mensagem */
+            font-weight: bold; /* Texto em negrito */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Validação de Formulário</h1>
+    
+    <form id="meuFormulario">
+        <label for="campoA">Campo A:</label>
+        <input type="number" id="campoA" required><br><br>
+        
+        <label for="campoB">Campo B:</label>
+        <input type="number" id="campoB" required><br><br>
+        
+        <button type="submit">Submeter</button>
+    </form>
+
+    <div id="mensagem" class="mensagem"></div>
+
+    <script>
+        const formulario = document.getElementById('meuFormulario');
+        const mensagemDiv = document.getElementById('mensagem');
+
+        formulario.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que o formulário seja enviado
+
+            const campoA = parseFloat(document.getElementById('campoA').value);
+            const campoB = parseFloat(document.getElementById('campoB').value);
+
+            if (campoB > campoA) {
+                mensagemDiv.textContent = "O formulário é válido! Campo B é maior que Campo A.";
+                mensagemDiv.style.color = "green";
+            } else {
+                mensagemDiv.textContent = "O formulário é inválido! Campo B deve ser maior que Campo A.";
+                mensagemDiv.style.color = "red";
+            }
+        });
+    </script>
+
+</body>
+</html>
